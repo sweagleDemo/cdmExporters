@@ -7,14 +7,14 @@
     if (gs.nil(args.nodeName)) { //first check nodeName is not null as you cannot check length or trim a null object
         gs.info("!!error: empty nodeName provided");
         output.errors = [];
-        output.state = "error";
+        output.state = "failure";
         return output;       
     } else { //next check the length of the trimmed value. If 0 it means only spaces were provided as input
         var filterNodeName = args.nodeName.trim(); //trim spaces from input
         if (filterNodeName.length === 0) {         
             gs.info("!!error: nodeName only contain spaces");
             output.errors = [];
-            output.state = "error";  
+            output.state = "failure";  
             return output;         
         }
     }​
@@ -35,7 +35,7 @@
                     output.result={};
                     errorMsg=filterNodeName + " was found multiple times";
                     output.errors = {"error":errorMsg};
-                    output.state = "error";  
+                    output.state = "failure";  
                     return output; 
                 }
                 var encodedNodePath = cdmQ.getValue("node_path"); //this returns the encoded path which can be used in CdmQuery to get the subtree for that path
